@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Richset | Rich Text Editor</title>
+	<!-- Titillium Web Font -->
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+
+	<!--- Data Icon Import -->
+	<link href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAE2fDAAHT/wAdTbwAF4T6AI212gAWWNQAAKj/AI+SygAAnv8AVmZ+ABwZQABkZrUAFmvAACVjxAAOZ9wAhej9AAXJ9wAyZLwABZX2AMbX2gCs2voAudHeAGHf/gCUmMIAd77/AAWK9gB0d6sAdqe7ABptwABTVK0AdeX/AILs/wByx/kAV2i6AEhSqQAmUL8AX83/AF/U/gAxTr0AIGTLAAXG+QAmScYAALn/ACZYwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsbGAAAAAAAAAAAAAAAAAAKFggjAAAAAAAAAAAAAAAAIhUZIR0AAAAAAAAAAAAAAAwPCSUQHQAAAAAAAAAAAAAAAxoHJiANAAAAAAAAAAAAAAAkEysXIA0AAAAAAAAAAAAAACwHKRcgAQAAAAAAAAAAAAAALCsCFyABAAAAAAAAAAAAAAAOKQIXIAEAAAAAAAAAAAAAAA4RAhcfEgAAAAAAAAAAAAAADikRFAAnAAAAAAAAAAAAAAAoHAUEKgAAAAAAAAAAAAAAAB4GJwAAAAAAAAAAAAAAAAAAAAAAAP//AAD//wAAx/8AAMP/AADB/wAAwP8AAOB/AADwPwAA+B8AAPwPAAD+BwAA/wMAAP+FAAD/wQAA/+MAAP//AAA=" rel="icon" type="image/x-icon" />
+	<!-- Import Font Awesome -->
+	<script src="https://use.fontawesome.com/10219f79d4.js"></script>
+
+	<style type="text/css">
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #999999;
+  border: 0px none #000000;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4d4d4d;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #e8ecf1;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #e8ecf1;
+}
+::-webkit-scrollbar-track:active {
+  background: #e8ecf1;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
+
+button {
+	margin: 0px;
+	padding: 5px;
+	border: none;
+	padding: none;
+	background-color: #E8ECF1;
+}
+
+button:hover {
+	background-color: #999;
+	cursor: pointer;
+}
+
+button:active {
+	background-color: #999;
+	cursor: pointer;
+}
+
+#font {
+	margin: 0px;
+	border: none;
+	background-color: #E8ECF1;
+	font-family: 'PT Sans Narrow', sans-serif;
+}
+
+
+
+	#editor {
+		background-color: #E8ECF1;
+		padding: 10px;
+		width: 560px;
+		border-radius: 10px;
+	}
+
+	.editor {
+		border: none;
+		border-top: #999 solid 1px;
+		border-bottom: #999 solid 1px;
+		margin-top: 10px;
+		height: 300px;
+	}
+
+	#formatOne {
+		border-left: 1px solid black;
+		border-right: 1px solid black;
+
+	}
+
+#select {
+
+}
+
+#formatTwo {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+
+}
+
+#formatThree {
+	border-right: 1px solid black;
+}
+
+#formatFour {
+	border-right: 1px solid black;
+}
+
+#formatFive {
+	border-right: 1px solid black;
+}
+	
+	</style>
+	<script type="text/javascript">
+
+var showingSourceCode = false;
+var isInEditMode = true;
+	
+function enableEditMode() {
+	richTextField.document.designMode = 'on';
+}
+
+function execCmd(command) {
+	richTextField.document.execCommand(command, false, null);
+}
+
+function execCommandWithArg(command, arg) {
+	richTextField.document.execCommand(command, false, arg);
+}
+
+function toggleSource() {
+	if (showingSourceCode){
+		richTextField.document.getElementsByTagName('body')[0].innerHTML = richTextField.document.getElementsByTagName('body')[0].textContent;
+		showingSourceCode = false;
+	}else {
+		richTextField.document.getElementsByTagName('body')[0].textContent = richTextField.document.getElementsByTagName('body')[0].innerHTML;
+		showingSourceCode = true;
+	}
+
+}
+
+function toggleEdit() {
+	if(isInEditMode) {
+		richTextField.document.designMode = 'off';
+		isInEditMode = false;
+	}else{
+		richTextField.document.designMode = 'on';
+		isInEditMode = true;
+	}
+}	
+
+</script>
+</head>
+<body onload="enableEditMode()">
+<br>
+<br>
+<noscript>Javascript is disable - <a href="http://www.webestools.com/">http://www.webestools.com/</a> - <a href="http://www.webestools.com/ribbon-generator-web20-free-online-quickribbon-generator.html">Diagonal Ribbon Generator</a></noscript><script type="text/javascript" src="http://services.webestools.com/ribbons/ribbon.js?texte=Rich%20Text%20Editor&lien=&color=%23000000&type=fixed&pos=right&size=20&font=raleway&style=15"></script>
+<center>
+<img src="http://www.auplod.com/u/pdloau8bf79.png" alt="Logo" border="0" />
+<div onload="enableEditMode()" id="editor">
+	<div id="controls">
+	<table>
+		<tr>
+			<td>
+				<div id="formatOne">
+	<button id="undo" onclick="execCmd('undo')"><i class="fa fa-undo"></i></button>
+	<button id="redo" onclick="execCmd('redo')"><i class="fa fa-repeat"></i></button>
+	</div>
+			</td>
+			<td>
+				<div id="select">
+				<select id="font" onchange="execCommandWithArg('fontName', this.value)">
+		<option>Arial</option>
+		<option>Comic Sans MS</option>
+		<option>Courier</option>
+		<option selected="selected">Georgia (Default)</option>
+		<option>Verdana</option>
+	</select>
+	</div>
+			</td>
+			<td>
+				<div id="formatTwo">
+			<button id="bold" onclick="execCmd('bold')"><i class="fa fa-bold"></i></button>
+	<button id="italic" onclick="execCmd('italic')"><i class="fa fa-italic"></i></button>
+	<button id="underline" onclick="execCmd('underline')"><i class="fa fa-underline"></i></button>
+	<button id="strth" onclick="execCmd('strikethrough')"><i class="fa fa-strikethrough"></i></button>
+	</div>
+			</td>
+			<td>
+				<div id="formatThree">
+	<button id="left" onclick="execCmd('justifyLeft')"><i class="fa fa-align-left"></i></button>
+	<button id="center" onclick="execCmd('justifyCenter')"><i class="fa fa-align-center"></i></button>
+	<button  id="right" onclick="execCmd('justifyRight')"><i class="fa fa-align-right"></i></button>
+</div>
+			</td>
+			<td>
+				<div id="formatFour">
+	<button id="ul" onclick="execCmd('insertUnorderedList')"><i class="fa fa-list-ul"></i></button>
+	<button id="ol" onclick="execCmd('insertOrderedList')"><i class="fa fa-list-ol"></i></button>
+	</div>
+			</td>
+			<td>
+				<div id="formatFive">
+	<button id="subscrpt" onclick="execCmd('subscript')"><i class="fa fa-subscript"></i></button>
+	<button id="supscrpt" onclick="execCmd('superscript')"><i class="fa fa-superscript"></i></button>
+	</div>
+			</td>
+		</tr>
+	</table>
+
+	</div>
+	<iframe class="editor" name="richTextField" width="550px"></iframe>
+</div>
+<br>
+<br>
+<p style="font-family: 'Titillium Web', sans-serif;"><b>Note:</b> You Can Drag Images off of Other Websites into The Editor.<br>
+</center>
+</body>
+</html>
