@@ -1,0 +1,2 @@
+# richset
+a text editor
